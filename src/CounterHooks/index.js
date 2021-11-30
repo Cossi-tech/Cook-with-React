@@ -1,12 +1,14 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
+import { ThemeContext } from '../App'
 
 export default function CounterHooks({initialCount}) {
-    const [state, setState] = useState({count: initialCount})
+    const [count, setCount] = useState(initialCount)
+    const theme = useContext(ThemeContext)
     return (
         <div>
-           <button onClick={() => setState({count: state.count -1})} > - </button>
-            <span> {state.count} </span>
-            <button onClick={() => setState({count: state.count +1})} > + </button> 
+           <button style={theme} onClick={() => setCount(prevCount => prevCount -1)} > - </button>
+            <span> {count} </span>
+            <button style={theme} onClick={() => setCount(prevCount => prevCount +1)} > + </button> 
         </div>
     )
-}
+} 
